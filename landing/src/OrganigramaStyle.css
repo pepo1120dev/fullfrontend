@@ -1,0 +1,29 @@
+.initechNode {
+  border-radius: 16px; /* Rounded corners */
+  background-color: #f5f5f5; /* Light background color */
+  display: inline-block; /* Allow text wrapping */
+  text-align: center; /* Center text within node */
+  min-width: 150px; /* Minimum width for text adjustment */
+  margin: 5px; /* Spacing between nodes */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0px 0px 6px #c6c6c6, 0px 0px 6px #ffffff; /* Subtle shadow */
+}
+
+.initechNode:hover {
+  background-color: #e0e0e0; /* Change background on hover */
+}
+
+.node-name {
+  background-color: #a41719;
+  margin: 0;
+  font-weight: bold;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.node-actor {
+  padding-left: 5px;
+  padding-right: 5px;
+}

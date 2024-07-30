@@ -1,0 +1,30 @@
+.encabezado-container {
+  max-height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  background-image: url("assets/images/back_03.png");
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 6px #c6c6c6, 0px 0px 6px #ffffff;
+}
+
+.encabezado-img {
+  width: 1000px;
+  height: auto;
+}
+
+.encabezado-list-ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.encabezado-list-li {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}

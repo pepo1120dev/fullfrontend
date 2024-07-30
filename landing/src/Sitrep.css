@@ -1,0 +1,70 @@
+.stp-encabezado {
+  text-align: right;
+}
+
+/* En tu archivo CSS */
+article ol.custom-list {
+  list-style-type: decimal;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-left: 0;
+  padding-left: 1em;
+}
+
+article ol.custom-list li {
+  font-size: 1.2em; /* Asegúrate de que coincida con el tamaño de los h2 */
+  line-height: 1.2em;
+  vertical-align: middle;
+  margin-bottom: 1em;
+}
+
+/* Estilos para los h2 (ajusta según tus necesidades) */
+article h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.stp-aft {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.stp-aft > div {
+  width: 100px;
+  height: auto;
+  border: 1px solid #ccc;
+}
+
+.stf-accrsp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.stf-accrsp > div {
+  width: 200px;
+  height: auto;
+  border: 1px solid #ccc;
+}
+
+.stf-recesc {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.stf-recesc > * {
+  width: 100px;
+  height: auto;
+  border: 1px solid #ccc;
+}

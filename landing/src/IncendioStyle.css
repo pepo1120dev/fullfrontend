@@ -1,0 +1,11 @@
+.ic-card {
+  height: 200px; /* Establecemos la altura fija */
+  width: 100%; /* Hacemos que el ancho ocupe el 100% del contenedor padre */
+  border: 1px solid #dfe7ef;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

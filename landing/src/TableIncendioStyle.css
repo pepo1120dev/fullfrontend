@@ -1,0 +1,64 @@
+.tb-incendio {
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 10px; /* Ajusta el valor para controlar el radio del borde */
+  overflow: hidden; /* Oculta cualquier contenido que exceda los bordes redondeados */
+}
+
+.tb-incendio td,
+.tb-incendio th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.tb-incendio-cap {
+  color: #ffffff;
+  background-color: #363636;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.tb-incendio th {
+  background-color: #a41719;
+  color: #fff;
+  text-align: left;
+  padding: 8px;
+}
+
+/* Aplicar estilo a todas las filas del cuerpo */
+.tb-incendio tbody tr {
+  /* Restablecer estilo por defecto para evitar conflictos */
+  background-color: #d4d4d4;
+}
+
+/* Aplicar estilo a las filas pares del cuerpo */
+.tb-incendio tbody tr:nth-child(even) {
+  background-color: #e7e7e7;
+}
+
+.tb-incendio th:nth-child(1),
+.tb-incendio td:nth-child(1) {
+  width: 10px;
+}
+
+.tb-incendio th:nth-child(2),
+.tb-incendio td:nth-child(2),
+.tb-incendio th:nth-child(3),
+.tb-incendio td:nth-child(3),
+.tb-incendio th:nth-child(4),
+.tb-incendio td:nth-child(4),
+.tb-incendio th:nth-child(6),
+.tb-incendio td:nth-child(6),
+.tb-incendio th:nth-child(7),
+.tb-incendio td:nth-child(7) {
+  width: 100px;
+}
+
+.tb-incendio th:nth-child(5),
+.tb-incendio td:nth-child(5) {
+  width: 200px;
+}
+.tb-incendio th:nth-child(8),
+.tb-incendio td:nth-child(8) {
+  width: 300px;
+}
