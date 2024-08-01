@@ -27,3 +27,43 @@
   padding-left: 5px;
   padding-right: 5px;
 }
+
+/* OrganigramaStyle.css */
+/* OrganigramaStyle.css */
+
+/* OrganigramaStyle.css */
+
+#initechOrgChart {
+  width: 100%; /* Asegura que el contenedor ocupe el 100% de su contenedor padre */
+  max-width: 1200px; /* Opcional: define un ancho máximo si es necesario */
+  margin: 0 auto; /* Centra el contenedor si el ancho es menor que el 100% */
+}
+
+.custom-table {
+  width: 90%; /* Ancho fijo del 90% del contenedor #initechOrgChart */
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  margin: 0 auto; /* Centra la tabla dentro de #initechOrgChart */
+}
+
+.custom-table th,
+.custom-table td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.custom-table th {
+  background-color: #8b0000; /* Rojo oscuro para los encabezados */
+  color: white;
+}
+
+.custom-table tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.custom-table .selected-row {
+  background-color: #add8e6;
+}
