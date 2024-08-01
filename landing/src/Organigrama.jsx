@@ -11,12 +11,68 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [loadingItems, setLoadingItems] = useState(true);
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [previousItemId, setPreviousItemId] = useState(null); // Nuevo estado para la sala anterior
   const socket = useRef(null);
+  const [orgChartMessage, setOrgChartMessage] = useState("");
 
   useEffect(() => {
-    // Cargar la lista de items usando REST
+    socket.current = io("http://localhost:3000");
+
+    socket.current.on("connect", () => {
+      console.log("Connected to the server");
+    });
+
+    socket.current.on("disconnect", () => {
+      console.log("Disconnected from the server");
+    });
+
+    // Escuchar el evento de nuevo item de tabla
+    socket.current.on("table-item-added", (newItem) => {
+      console.log("Received new table item:", newItem);
+      setItems((prevItems) => [...prevItems, newItem]);
+    });
+
+    return () => {
+      if (socket.current) {
+        socket.current.disconnect();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (selectedItemId) {
+      // Dejar la sala anterior si existe
+      if (previousItemId) {
+        console.log(`Leaving room: ${previousItemId}`);
+        socket.current.emit("leave-orgchart", previousItemId);
+      }
+
+      // Unirse a la nueva sala
+      console.log(`Joining room: ${selectedItemId}`);
+      socket.current.emit("join-orgchart", selectedItemId);
+
+      const handleOrgChartUpdated = (updatedOrgChart) => {
+        console.log("Received updated org chart:", updatedOrgChart);
+        setOrgData(updatedOrgChart);
+      };
+
+      socket.current.on("orgchart-updated", handleOrgChartUpdated);
+
+      // Actualizar el estado de la sala anterior
+      setPreviousItemId(selectedItemId);
+
+      return () => {
+        console.log("Cleaning up listeners for orgchart-updated");
+        socket.current.off("orgchart-updated", handleOrgChartUpdated);
+      };
+    }
+  }, [selectedItemId]);
+
+  useEffect(() => {
     axios
-      .get("http://localhost:3000/items")
+      .get(
+        "http://localhost:8080/ServiciosRest/resources/sinnombre/listarPartes"
+      )
       .then((response) => {
         setItems(response.data);
         setLoadingItems(false);
@@ -27,47 +83,35 @@ const App = () => {
       });
   }, []);
 
-  useEffect(() => {
-    // Conectar a Socket.IO
-    socket.current = io("http://localhost:3000");
-
-    return () => {
-      // Desconectar el socket cuando el componente se desmonta
-      socket.current.disconnect();
-    };
-  }, []);
-
   const fetchOrgChart = (id) => {
     setLoading(true);
     setSelectedItemId(id);
 
-    // Obtener el organigrama específico usando REST
     axios
-      .get(`http://localhost:8080/orguser/${id}`)
+      .get(
+        `http://localhost:8080/ServiciosRest/resources/sinnombre/orgByParte/${id}`
+      )
       .then((response) => {
-        setOrgData(response.data);
+        if (response.data && Object.keys(response.data).length > 0) {
+          setOrgData(response.data);
+          setOrgChartMessage("");
+        } else {
+          setOrgData(null);
+          setOrgChartMessage("Aún no existe organigrama para esta parte.");
+        }
         setLoading(false);
-
-        // Unirse a la sala del organigrama específico
-        socket.current.emit("join-orgchart", id);
-
-        // Escuchar actualizaciones del organigrama
-        socket.current.on("orgchart-updated", (updatedOrgChart) => {
-          if (id === selectedItemId) {
-            setOrgData(updatedOrgChart);
-          }
-        });
       })
       .catch((error) => {
         console.error("Error fetching the org data", error);
         setLoading(false);
+        setOrgChartMessage("Error al cargar el organigrama.");
       });
   };
 
   const MyNodeComponent = ({ node }) => {
     return (
       <section className="initechNode">
-        <p className="node-name">{node.entidad}</p>
+        <p className="node-name">{node.nombreUsuario}</p>
         <p className="node-actor">{node.funcion}</p>
       </section>
     );
@@ -82,7 +126,7 @@ const App = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Name</th>
+              <th>Contexto</th>
             </tr>
           </thead>
           <tbody>
@@ -90,10 +134,9 @@ const App = () => {
               <tr
                 key={item.id}
                 onClick={() => fetchOrgChart(item.id)}
-                className={selectedItemId === item.id ? "selected-row" : ""}
-              >
+                className={selectedItemId === item.id ? "selected-row" : ""}>
                 <td>{item.id}</td>
-                <td>{item.name}</td>
+                <td>{item.contexto}</td>
               </tr>
             ))}
           </tbody>
@@ -107,7 +150,9 @@ const App = () => {
           <OrgChart tree={orgData} NodeComponent={MyNodeComponent} />
         </div>
       ) : (
-        <p>Select an item to view the organizational chart</p>
+        <p>
+          {orgChartMessage || "Seleccione un parte para ver el organigrama"}
+        </p>
       )}
     </div>
   );
