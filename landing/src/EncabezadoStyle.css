@@ -13,18 +13,53 @@
 }
 
 .encabezado-img {
-  width: 1000px;
-  height: auto;
+  width: 600px; /* Reducir el tamaño de la imagen en pantallas más pequeñas */
 }
 
 .encabezado-list-ul {
-  list-style: none;
-  display: flex;
-  gap: 40px;
+  list-style: none; /* Elimina los puntos de la lista */
+  display: flex; /* Alinea los elementos de la lista en horizontal */
+  gap: 20px; /* Espacio entre los elementos de la lista */
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
 .encabezado-list-li {
   font-size: 16px;
   font-weight: bold;
-  color: #333;
+}
+
+.encabezado-list-li a {
+  text-decoration: none;
+  color: #333; /* Color del texto */
+  padding: 8px 16px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.encabezado-list-li a:hover {
+  color: #000; /* Cambia el color del texto al pasar el cursor */
+  background-color: #f0f0f0; /* Fondo del enlace al pasar el cursor */
+  border-radius: 4px; /* Bordes redondeados para el fondo */
+}
+
+/* Media Query para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .encabezado-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .encabezado-img {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho disponible */
+    height: auto;
+    margin-bottom: 20px; /* Añade espacio entre la imagen y la lista */
+  }
+
+  .encabezado-list-ul {
+    flex-direction: column; /* Cambia la dirección a vertical en pantallas pequeñas */
+    gap: 10px; /* Reduce el espacio entre los elementos */
+    width: 100%;
+    align-items: flex-start; /* Alinea los elementos a la izquierda */
+  }
 }

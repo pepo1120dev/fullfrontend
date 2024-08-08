@@ -1,11 +1,77 @@
 .ic-card {
-  height: 200px; /* Establecemos la altura fija */
-  width: 100%; /* Hacemos que el ancho ocupe el 100% del contenedor padre */
+  height: 400px; /* Altura total de la card */
+  width: 100%; /* Ancho al 100% del contenedor padre */
   border: 1px solid #dfe7ef;
   background-color: #fff;
   border-radius: 16px;
-  padding: 50px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0px 0px 6px #c6c6c6, 0px 0px 6px #ffffff;
+}
+
+.ic-card-upper {
+  height: 50%; /* Ocupa la mitad superior de la card */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  --s: 100px; /* control the size */
+  --c1: #1d1d1d;
+  --c2: #4e4f51;
+  --c3: #3c3c3c;
+  background: repeating-conic-gradient(
+        from 30deg,
+        #0000 0 120deg,
+        var(--c3) 0 180deg
+      )
+      calc(0.5 * var(--s)) calc(0.5 * var(--s) * 0.577),
+    repeating-conic-gradient(
+      from 30deg,
+      var(--c1) 0 60deg,
+      var(--c2) 0 120deg,
+      var(--c3) 0 180deg
+    );
+  background-size: var(--s) calc(var(--s) * 0.577);
+}
+
+.ic-card-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Hace la imagen circular */
+  border: 5px solid #fff; /* Borde blanco alrededor de la imagen */
+  background-color: #fff;
+  position: absolute;
+  top: 50%; /* Centra la imagen verticalmente dentro de la mitad superior */
+  transform: translateY(-50%);
+}
+
+.ic-card-lower {
+  height: 50%; /* Ocupa la mitad inferior de la card */
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ic-card h2 {
+  margin: 10px 0;
+  font-size: 24px;
+  color: #2038bf; /* Texto blanco para contrastar con el fondo rojo */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 10px 20px; /* Espacio alrededor del texto */
+  border-radius: 8px; /* Bordes redondeados */
+  display: inline-block; /* Para ajustar el fondo al tamaño del texto */
+  text-align: center;
+}
+
+.ic-card p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+  padding: 0 20px;
 }

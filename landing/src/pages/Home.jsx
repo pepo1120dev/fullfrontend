@@ -66,9 +66,6 @@ const Home = () => {
           <IncendioComponent key={index} {...incendio} />
         ))}
       </section>
-      <section className="content-page-table">
-        <TablaIncendioComponent gruposDeIncendios={gruposDeIncendios} />
-      </section>
     </div>
   );
 };

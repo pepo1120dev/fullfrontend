@@ -16,7 +16,7 @@ const App = () => {
   const [orgChartMessage, setOrgChartMessage] = useState("");
 
   useEffect(() => {
-    socket.current = io("http://localhost:3000");
+    socket.current = io("http://192.168.12.21:3000");
 
     socket.current.on("connect", () => {
       console.log("Connected to the server");
@@ -71,7 +71,7 @@ const App = () => {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:8080/ServiciosRest/resources/sinnombre/listarPartes"
+        "http://192.168.12.21:8080/ServiciosRest/resources/sinnombre/listarPartes"
       )
       .then((response) => {
         setItems(response.data);
@@ -89,7 +89,7 @@ const App = () => {
 
     axios
       .get(
-        `http://localhost:8080/ServiciosRest/resources/sinnombre/orgByParte/${id}`
+        `http://192.168.12.21:8080/ServiciosRest/resources/sinnombre/orgByParte/${id}`
       )
       .then((response) => {
         if (response.data && Object.keys(response.data).length > 0) {
@@ -122,25 +122,29 @@ const App = () => {
       {loadingItems ? (
         <p>Loading items...</p>
       ) : (
-        <table className="custom-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Contexto</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item) => (
-              <tr
-                key={item.id}
-                onClick={() => fetchOrgChart(item.id)}
-                className={selectedItemId === item.id ? "selected-row" : ""}>
-                <td>{item.id}</td>
-                <td>{item.contexto}</td>
+        <div className="custom-table-container">
+          <table className="custom-table">
+            <thead>
+              <tr>
+                <th>parte</th>
+                <th>estacion</th>
+                <th>especialidad</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {items.map((item) => (
+                <tr
+                  key={item.id}
+                  onClick={() => fetchOrgChart(item.id)}
+                  className={selectedItemId === item.id ? "selected-row" : ""}>
+                  <td>{item.id}</td>
+                  <td>{item.estacion}</td>
+                  <td>{item.especialidad}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       {loading ? (
@@ -150,7 +154,7 @@ const App = () => {
           <OrgChart tree={orgData} NodeComponent={MyNodeComponent} />
         </div>
       ) : (
-        <p>
+        <p className="org-chart-message">
           {orgChartMessage || "Seleccione un parte para ver el organigrama"}
         </p>
       )}

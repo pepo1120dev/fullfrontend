@@ -8,15 +8,15 @@ import { NavLink } from "react-router-dom";
 function NavBar() {
   return (
     <nav className="encabezado-container">
-      <img src={reactLogo} className="encabezado-img"></img>
-      <ul>
-        <li>
+      <img src={reactLogo} className="encabezado-img" alt="Logo" />
+      <ul className="encabezado-list-ul">
+        <li className="encabezado-list-li">
           <Link to="/">Inicio</Link>
         </li>
-        <li>
+        <li className="encabezado-list-li">
           <Link to="/organigrama">Organigrama</Link>
         </li>
-        <li>
+        <li className="encabezado-list-li">
           <Link to="/sitrep">SITREP</Link>
         </li>
       </ul>

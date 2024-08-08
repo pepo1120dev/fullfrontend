@@ -7,8 +7,13 @@ export default defineConfig({
   server: {
     proxy: {
       "/socket.io": {
-        target: "http://localhost:3000",
+        target: "http://192.168.12.21:3000",
         ws: true,
+      },
+      "/ServiciosRest": {
+        target: "http://192.168.12.21:8080",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ServiciosRest/, ""),
       },
     },
   },

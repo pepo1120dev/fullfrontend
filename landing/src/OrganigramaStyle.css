@@ -35,23 +35,38 @@
 
 #initechOrgChart {
   width: 100%; /* Asegura que el contenedor ocupe el 100% de su contenedor padre */
-  max-width: 1200px; /* Opcional: define un ancho máximo si es necesario */
+  margin-left: 20px;
+  margin-right: 20px;
+
   margin: 0 auto; /* Centra el contenedor si el ancho es menor que el 100% */
+}
+.org-chart-wrapper {
+  width: 100%;
+  scale: 0.9;
+}
+
+.custom-table-container {
+  max-height: 400px; /* Altura máxima del contenedor de la tabla */
+  overflow-y: auto; /* Añade scroll vertical */
+  box-shadow: 0px 0px 6px #dfe7ef, 0px 0px 6px #ffffff;
 }
 
 .custom-table {
-  width: 90%; /* Ancho fijo del 90% del contenedor #initechOrgChart */
+  width: 100%; /* Ancho fijo del 90% del contenedor #initechOrgChart */
   border-collapse: collapse;
   margin-bottom: 20px;
   font-family: Arial, sans-serif;
   margin: 0 auto; /* Centra la tabla dentro de #initechOrgChart */
+  border-collapse: collapse;
+  border-radius: 10px; /* Ajusta el valor para controlar el radio del borde */
+  overflow: hidden;
 }
 
 .custom-table th,
 .custom-table td {
   border: 1px solid #dddddd;
   text-align: left;
-  padding: 8px;
+  padding: 10px;
 }
 
 .custom-table th {
@@ -66,4 +81,23 @@
 
 .custom-table .selected-row {
   background-color: #add8e6;
+}
+
+.custom-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #8b0000; /* Fondo de la cabecera */
+  z-index: 1; /* Asegura que la cabecera esté sobre el contenido */
+}
+
+.org-chart-message {
+  border: 1px solid #dfe7ef;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold; /* Hace que el texto sea en negrita */
+  font-size: 20px; /* Cambia el tamaño de la letra */
 }

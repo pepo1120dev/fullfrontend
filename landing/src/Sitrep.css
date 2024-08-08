@@ -2,28 +2,6 @@
   text-align: right;
 }
 
-/* En tu archivo CSS */
-article ol.custom-list {
-  list-style-type: decimal;
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-left: 0;
-  padding-left: 1em;
-}
-
-article ol.custom-list li {
-  font-size: 1.2em; /* Asegúrate de que coincida con el tamaño de los h2 */
-  line-height: 1.2em;
-  vertical-align: middle;
-  margin-bottom: 1em;
-}
-
-/* Estilos para los h2 (ajusta según tus necesidades) */
-article h2 {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
 .stp-aft {
   display: flex;
   flex-wrap: wrap;
@@ -60,7 +38,7 @@ article h2 {
   justify-content: flex-start;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 20px;
+  gap: 40px;
 }
 
 .stf-recesc > * {
